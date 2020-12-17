@@ -39,7 +39,7 @@ public class ProductController {
         } else {
             products = productRepo.findAll();
         }
-        
+
         // Pass products to template by attribute => in our template we can access this variable
         model.addAttribute("allProducts", products);
         return "products";
