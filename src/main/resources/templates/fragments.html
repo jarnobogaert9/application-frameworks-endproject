@@ -10,10 +10,10 @@
 <!--</html>-->
 
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
-    <head th:fragment="header">
+    <head th:fragment="header(pageTitle)">
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-        <title>Pet webshop</title>
+        <title th:text="${pageTitle} + ' | Pet webshop'"></title>
     </head>
 
     <nav th:fragment="navbar">
