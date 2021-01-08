@@ -7,7 +7,7 @@
 <div class="ui container">
     <h1>Register</h1>
     <form class="ui form"
-          th:classappend="${#fields.hasErrors('password') || #fields.hasErrors('username')} ? 'error' : ''"
+          th:classappend="${#fields.hasErrors('username') || #fields.hasErrors('password') || #fields.hasErrors('confirmPassword')} ? 'error' : ''"
           method="post"
           th:action="@{/register}"
           th:object="${newUser}">
@@ -24,6 +24,13 @@
             <input type="text" name="password" placeholder="Enter password" th:field="*{password}">
             <div th:if="${#fields.hasErrors('password')}" class="ui error message">
                 <p th:errors="*{password}"></p>
+            </div>
+        </div>
+        <div class="field">
+            <label>Confirm password</label>
+            <input type="text" name="confirmPassword" placeholder="Re-enter password" th:field="*{confirmPassword}">
+            <div th:if="${#fields.hasErrors('confirmPassword')}" class="ui error message">
+                <p th:errors="*{confirmPassword}"></p>
             </div>
         </div>
         <button class="ui button" type="submit">Register</button>
