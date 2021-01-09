@@ -55,4 +55,22 @@ public class CartController {
 
         return "redirect:/cart";
     }
+
+    @PostMapping("/cart")
+    public String removeProduct(@RequestParam(value = "productId") String productId, Principal principal, ModelMap modelMap) {
+        // /cart routes are only accessible if they are authenticated so we would always get a user back
+        User user = userRepo.findByUsername(principal.getName()).get();
+
+        Optional<Product> product = productRepo.findById(Integer.parseInt(productId));
+
+        if (product.isPresent())
+            user.getProducts().remove(product.get());
+
+        userRepo.save(user);
+
+        // Pass updated products
+        modelMap.addAttribute("products", user.getProducts());
+
+        return "cart";
+    }
 }

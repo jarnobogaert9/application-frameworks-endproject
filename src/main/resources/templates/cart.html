@@ -28,7 +28,10 @@
                         <span th:text="${product.description}"></span>
                     </td>
                     <td>
-                        <a class="ui button red">Remove from cart</a>
+                        <form th:action="@{/cart}" method="post">
+                            <input type="hidden" name="productId" th:value="${product.getId()}">
+                            <button class="ui button red">Remove from cart</button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
