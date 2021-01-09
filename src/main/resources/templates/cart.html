@@ -3,10 +3,36 @@
 <head th:replace="fragments :: header('Cart')">
 </head>
 <body>
-<nav th:replace="fragments :: navbar"></nav>
-<div class="ui container">
-    <h1>Cart</h1>
+    <nav th:replace="fragments :: navbar"></nav>
+    <div class="ui container">
+        <h1>Cart</h1>
 
-</div>
+        <table class="ui very basic table padded">
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product: ${products}">
+                    <td>
+                        <span th:text="${product.name}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${product.price}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${product.description}"></span>
+                    </td>
+                    <td>
+                        <a class="ui button red">Remove from cart</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
