@@ -3,10 +3,9 @@ package xyz.jarnobogaert.petwebshop.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +32,9 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Order> orders;
 
     public User() {
     }
@@ -89,5 +91,13 @@ public class User {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

@@ -2,7 +2,7 @@ package xyz.jarnobogaert.petwebshop.models;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
