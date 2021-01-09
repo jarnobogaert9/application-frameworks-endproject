@@ -7,6 +7,12 @@
     <div class="ui container">
         <h1>Cart</h1>
 
+        <div th:if="${products.size() == 0}">
+            <div class="ui info message">
+                <p>Your cart is empty. Please add something to your cart in order to place an order.</p>
+            </div>
+        </div>
+
         <table class="ui very basic table padded">
             <thead>
                 <tr>
@@ -36,6 +42,9 @@
                 </tr>
             </tbody>
         </table>
+        <div th:if="${products.size() > 0}">
+            <button class="ui button green">Checkout</button>
+        </div>
     </div>
 </body>
 </html>
