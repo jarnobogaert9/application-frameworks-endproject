@@ -68,9 +68,6 @@ public class CartController {
 
         userRepo.save(user);
 
-        // Pass updated products
-        modelMap.addAttribute("products", user.getProducts());
-
-        return "cart";
+        return "redirect:/cart";
     }
 }
