@@ -7,7 +7,7 @@
     <div class="ui container">
         <h1>Products</h1>
         <div class="ui doubling stackable three column grid">
-            <div class="column" th:each="product: ${allProducts}">
+            <div class="column" th:each="product: ${products}">
                 <div class="ui fluid card">
                     <div class="content">
                         <div class="header" th:text="${product.name}"></div>

@@ -41,7 +41,7 @@ public class ProductController {
         }
 
         // Pass products to template by attribute => in our template we can access this variable
-        model.addAttribute("allProducts", products);
+        model.addAttribute("products", products);
         return "products";
     }
 }
