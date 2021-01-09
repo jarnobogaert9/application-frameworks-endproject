@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import xyz.jarnobogaert.petwebshop.models.User;
 import xyz.jarnobogaert.petwebshop.repositories.UserRepo;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -39,8 +41,8 @@ public class AuthController {
 
     @PostMapping("/register")
     // Valid annotation to validate the incoming object
-    public String registerUser(@ModelAttribute("newUser") @Valid User user, BindingResult bindingResult) {
-        System.out.println("---- REGISTER USER ----");
+    public String registerUser(@ModelAttribute("newUser") @Valid User user, BindingResult bindingResult, HttpServletRequest request) {
+        System.out.println("=============== REGISTER USER ===============");
 
         // If passwords do not match add error to binding result
         if (!user.getPassword().equals(user.getConfirmPassword())) {
@@ -71,7 +73,13 @@ public class AuthController {
         user.setHash(hash);
         userRepo.save(user);
 
-        // TODO Log user in after saving him/her to the database
+        // Log user in after saving him/her to the database
+        try {
+            // Pass plain text password because our authentication provider will use this in the password encoder
+            request.login(user.getUsername(), user.getPassword());
+        } catch (ServletException exception) {
+            throw new RuntimeException("Servlet exception: something went wrong when trying to login a user\n" + exception.getStackTrace() + "\n" + exception.getMessage() + "\n" + exception.getRootCause());
+        }
 
         return "redirect:/products";
     }

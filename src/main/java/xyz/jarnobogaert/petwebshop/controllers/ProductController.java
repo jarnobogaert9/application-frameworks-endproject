@@ -10,7 +10,6 @@ import xyz.jarnobogaert.petwebshop.models.Category;
 import xyz.jarnobogaert.petwebshop.models.Product;
 import xyz.jarnobogaert.petwebshop.repositories.ProductRepo;
 
-import java.security.Principal;
 import java.util.Arrays;
 
 @Controller
