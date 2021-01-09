@@ -68,7 +68,7 @@ public class AuthController {
 
         System.out.println("No user found");
         // Create user in database
-        // First create hash for his password
+        // First create hash for his/her password
         String hash = bCryptPasswordEncoder.encode(user.getPassword());
         user.setHash(hash);
         userRepo.save(user);

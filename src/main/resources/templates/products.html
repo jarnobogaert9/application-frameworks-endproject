@@ -19,6 +19,13 @@
                     </div>
                     <div class="extra content">
                         <div class="ui tag label" th:text="${product.category.toString().toLowerCase()}"></div>
+                        <form style="display: inline;" th:action="@{/cart}" method="GET">
+                            <input type="hidden" name="productId" th:value="${product.getId()}">
+                            <button class="ui button tiny green right floated">
+                                Add to cart
+                            </button>
+                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

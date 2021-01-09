@@ -2,8 +2,9 @@ package xyz.jarnobogaert.petwebshop.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -25,6 +26,13 @@ public class User {
     private String confirmPassword;
 
     private String hash;
+
+    @ManyToMany
+    @JoinTable(
+            name = "cart_products",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> products;
 
     public User() {
     }
@@ -73,5 +81,13 @@ public class User {
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
