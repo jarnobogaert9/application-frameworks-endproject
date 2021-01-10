@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: header('Profile')">
+</head>
+<body>
+    <nav th:replace="fragments :: navbar"></nav>
+    <div class="ui container">
+        <h1>Profile</h1>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Username: <span th:text="${user.username}"></span></div>
+                <div class="description">
+                    <p><a th:href="@{/cart}">See products in cart</a></p>
+                    <p><a th:href="@{/orders}">See placed orders</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

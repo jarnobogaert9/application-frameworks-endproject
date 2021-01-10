@@ -3,9 +3,9 @@ package xyz.jarnobogaert.petwebshop.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +15,7 @@ import xyz.jarnobogaert.petwebshop.repositories.UserRepo;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -37,6 +38,13 @@ public class AuthController {
     @GetMapping("/register")
     public String register() {
         return "register";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Principal principal, ModelMap modelMap) {
+        User user = userRepo.findByUsername(principal.getName()).get();
+        modelMap.addAttribute("user", user);
+        return "profile";
     }
 
     @PostMapping("/register")

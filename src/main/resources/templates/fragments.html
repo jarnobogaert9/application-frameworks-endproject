@@ -25,10 +25,13 @@
                 <a class="item" th:href="@{/cart}">
                     Cart
                 </a>
-                <a class="item">
+                <a class="item" th:href="@{/orders}">
                     Orders
                 </a>
                 <div class="right menu" sec:authorize="isAuthenticated()">
+                    <a class="ui item" th:href="@{/profile}">
+                        Profile
+                    </a>
                     <a class="ui item" th:href="@{/logout}">
                         Logout
                     </a>

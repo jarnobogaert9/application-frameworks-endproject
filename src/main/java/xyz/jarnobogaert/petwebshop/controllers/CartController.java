@@ -1,15 +1,11 @@
 package xyz.jarnobogaert.petwebshop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.access.prepost.PreInvocationAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.WebRequest;
 import xyz.jarnobogaert.petwebshop.models.Product;
 import xyz.jarnobogaert.petwebshop.models.User;
 import xyz.jarnobogaert.petwebshop.repositories.ProductRepo;
@@ -18,6 +14,7 @@ import xyz.jarnobogaert.petwebshop.repositories.UserRepo;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+
 
 @Controller
 public class CartController {
