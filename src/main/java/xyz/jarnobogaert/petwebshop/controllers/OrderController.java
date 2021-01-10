@@ -49,7 +49,7 @@ public class OrderController {
         user.getProducts().clear();
         userRepo.save(user);
 
-        return "redirect:/cart";
+        return "redirect:/orders";
     }
 
     @GetMapping("/orders")
