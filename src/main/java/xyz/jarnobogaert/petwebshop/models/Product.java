@@ -15,12 +15,12 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    private double price;
+    private float price;
 
     public Product() {
     }
 
-    public Product(String name, String description, Category category, double price) {
+    public Product(String name, String description, Category category, float price) {
         this.name = name;
         this.description = description;
         this.category = category;
@@ -59,11 +59,11 @@ public class Product {
         this.category = category;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 }

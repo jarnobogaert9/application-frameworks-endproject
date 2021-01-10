@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: header('Orders')">
+</head>
+<body>
+    <nav th:replace="fragments :: navbar"></nav>
+    <div class="ui container">
+        <h1>Orders</h1>
+
+        <div class="ui list">
+            <div class="item" th:each="order : ${orders}">
+                <h2 th:text="'Order number: ' + ${order.getId()}"></h2>
+                <table class="ui very basic table padded">
+                    <tbody>
+                        <tr th:each="product: ${order.products}">
+                            <td>
+                                <span th:text="${product.name}"></span>
+                            </td>
+                            <td>
+                                <span th:text="'€' + ${product.price}"></span>
+                            </td>
+                            <td>
+                                <span th:text="${product.description}"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <h3><b>Total: €<span th:text="${order.totalPrice}"></span></b></h3>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+<!--    <div th:if="${products.size() == 0}">-->
+<!--        <div class="ui info message">-->
+<!--            <p>Your cart is empty. Please add something to your cart in order to place an order.</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <table class="ui very basic table padded">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Product name</th>-->
+<!--            <th>Price</th>-->
+<!--            <th>Description</th>-->
+<!--            <th>Action</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="product: ${products}">-->
+<!--            <td>-->
+<!--                <span th:text="${product.name}"></span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <span th:text="'€' + ${product.price}"></span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <span th:text="${product.description}"></span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <form th:action="@{/cart}" method="post">-->
+<!--                    <input type="hidden" name="productId" th:value="${product.getId()}">-->
+<!--                    <button class="ui button red">Remove from cart</button>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    <div th:if="${products.size() > 0}">-->
+<!--        <form th:action="@{/order}" method="post">-->
+<!--            <button class="ui button green">Checkout</button>-->
+<!--        </form>-->
+<!--    </div>-->
+    </div>
+</body>
+</html>

@@ -28,7 +28,7 @@
                         <span th:text="${product.name}"></span>
                     </td>
                     <td>
-                        <span th:text="${product.price}"></span>
+                        <span th:text="'€' + ${product.price}"></span>
                     </td>
                     <td>
                         <span th:text="${product.description}"></span>
@@ -43,7 +43,9 @@
             </tbody>
         </table>
         <div th:if="${products.size() > 0}">
-            <button class="ui button green">Checkout</button>
+            <form th:action="@{/order}" method="post">
+                <button class="ui button green">Checkout</button>
+            </form>
         </div>
     </div>
 </body>
