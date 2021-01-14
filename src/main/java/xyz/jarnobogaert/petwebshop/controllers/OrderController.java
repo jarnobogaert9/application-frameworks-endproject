@@ -31,9 +31,10 @@ public class OrderController {
         List<Product> products = new ArrayList<>();
         float totalPrice = 0F;
 
-        // Make new array instead of using array from user object otherwise it will give a conflict about shared collections
+        // Make new array instead of using array from user object, otherwise it will give a conflict about shared collections
         user.getProducts().forEach(products::add);
 
+        // Get price of each product and accumulate it to get the total price of the order
         for (Product product : user.getProducts()) {
             totalPrice += product.getPrice();
         }
@@ -45,7 +46,7 @@ public class OrderController {
 
         orderRepo.save(order);
 
-        // Clean cart of user
+        // Clean the cart of the user after creating the order
         user.getProducts().clear();
         userRepo.save(user);
 
