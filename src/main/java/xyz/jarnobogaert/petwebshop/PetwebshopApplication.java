@@ -24,6 +24,7 @@ public class PetwebshopApplication {
         List<Product> productList = new ArrayList<>();
         products.forEach(productList::add);
 
+        // If there are not products in the database then seed the database with products
         if (productList.isEmpty()) {
             productRepo.saveAll(Arrays.asList(
                     new Product("Fresh chicken pieces", "Bag full of fresh chicken pieces.", Category.NUTRITION, 29.99F),
