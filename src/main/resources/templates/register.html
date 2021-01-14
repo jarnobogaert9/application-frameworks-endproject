@@ -3,38 +3,38 @@
 <head th:replace="fragments :: header('Register')">
 </head>
 <body>
-<nav th:replace="fragments :: navbar"></nav>
-<div class="ui container">
-    <h1>Register</h1>
-    <form class="ui form"
-          th:classappend="${#fields.hasErrors('username') || #fields.hasErrors('password') || #fields.hasErrors('confirmPassword')} ? 'error' : ''"
-          method="post"
-          th:action="@{/register}"
-          th:object="${newUser}">
+    <nav th:replace="fragments :: navbar"></nav>
+    <div class="ui container">
+        <h1>Register</h1>
+        <form class="ui form"
+              th:classappend="${#fields.hasErrors('username') || #fields.hasErrors('password') || #fields.hasErrors('confirmPassword')} ? 'error' : ''"
+              method="post"
+              th:action="@{/register}"
+              th:object="${newUser}">
 
-        <div class="field">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Enter username" th:field="*{username}">
-            <div th:if="${#fields.hasErrors('username')}" class="ui error message">
-                <p th:errors="*{username}"></p>
+            <div class="field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" th:field="*{username}">
+                <div th:if="${#fields.hasErrors('username')}" class="ui error message">
+                    <p th:errors="*{username}"></p>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label>Password</label>
-            <input type="text" name="password" placeholder="Enter password" th:field="*{password}">
-            <div th:if="${#fields.hasErrors('password')}" class="ui error message">
-                <p th:errors="*{password}"></p>
+            <div class="field">
+                <label>Password</label>
+                <input type="text" name="password" placeholder="Enter password" th:field="*{password}">
+                <div th:if="${#fields.hasErrors('password')}" class="ui error message">
+                    <p th:errors="*{password}"></p>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label>Confirm password</label>
-            <input type="text" name="confirmPassword" placeholder="Re-enter password" th:field="*{confirmPassword}">
-            <div th:if="${#fields.hasErrors('confirmPassword')}" class="ui error message">
-                <p th:errors="*{confirmPassword}"></p>
+            <div class="field">
+                <label>Confirm password</label>
+                <input type="text" name="confirmPassword" placeholder="Re-enter password" th:field="*{confirmPassword}">
+                <div th:if="${#fields.hasErrors('confirmPassword')}" class="ui error message">
+                    <p th:errors="*{confirmPassword}"></p>
+                </div>
             </div>
-        </div>
-        <button class="ui button" type="submit">Register</button>
-    </form>
-</div>
+            <button class="ui button" type="submit">Register</button>
+        </form>
+    </div>
 </body>
 </html>
