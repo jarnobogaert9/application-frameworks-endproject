@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/login", "/register", "/products", "/").permitAll()
-                .anyRequest().authenticated() // every request needs to be authenticated
+                .anyRequest().authenticated() // every request needs to be authenticated expect the ones above
                 .and()
                 .formLogin().loginPage("/login") // login page is at /login
                 .and()
