@@ -6,6 +6,18 @@
     <nav th:replace="fragments :: navbar"></nav>
     <div class="ui container">
         <h1>Products</h1>
+        <form th:action="@{/products}" method="get">
+            <div class="field">
+                <select name="c">
+                    <option value="all">All</option>
+                    <option value="toys">Toys</option>
+                    <option value="nutrition">Nutrition</option>
+                    <option value="habitat">Habitat</option>
+                </select>
+            </div>
+            <button class="ui button" type="submit">Filter</button>
+        </form>
+        <br>
         <div class="ui doubling stackable three column grid">
             <div class="column" th:each="product: ${products}">
                 <div class="ui fluid card">
