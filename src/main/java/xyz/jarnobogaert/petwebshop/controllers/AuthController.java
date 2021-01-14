@@ -64,7 +64,7 @@ public class AuthController {
             return "register";
         }
 
-        // Check get user based on username and use it to check if he is already in the database
+        // Get user based on username and use it to check if he is already in the database
         Optional<User> found = userRepo.findByUsername(user.getUsername());
 
         if (found.isPresent()) {
