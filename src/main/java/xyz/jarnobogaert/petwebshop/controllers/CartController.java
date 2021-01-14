@@ -22,28 +22,31 @@ public class CartController {
     UserRepo userRepo;
     @Autowired
     ProductRepo productRepo;
-//    @PreAuthorize("isAuthenticated()")
+
     @GetMapping("/cart")
     public String cart(@RequestParam(value = "productId", required = false) String productId, Principal principal, ModelMap modelMap) {
         // Get user based on logged in user his/her username
         User user = userRepo.findByUsername(principal.getName()).get();
 
+        // If there is not productId the user just wants to see the cart items
         if (productId == null) {
             System.out.println("============ GET: /cart ============");
             List<Product> products = user.getProducts();
 
-            // Set model attribute so we can access it in our template
+            // Set model attribute so we can access it in our template and list the cart items
             modelMap.addAttribute("products", products);
 
             return "cart";
         }
-        System.out.println("============ Add to card ============");
+
+        // If there is a productId, the user wants to add this product to his cart
+        System.out.println("============ Add to cart ============");
         System.out.println(productId);
 
-        // Get the product that we need to add to the user his/her cart
+        // Get the product that we need to add it to the user his/her cart
         Optional<Product> product = productRepo.findById(Integer.parseInt(productId));
 
-        // Add product id to the list of products, make sure there is a product so avoid exceptions
+        // Add product to the list of products, make sure there is a product to avoid exceptions
         if (product.isPresent())
             user.getProducts().add(product.get());
 
@@ -55,11 +58,11 @@ public class CartController {
 
     @PostMapping("/cart")
     public String removeProduct(@RequestParam(value = "productId") String productId, Principal principal, ModelMap modelMap) {
-        // /cart routes are only accessible if they are authenticated so we would always get a user back
         User user = userRepo.findByUsername(principal.getName()).get();
 
         Optional<Product> product = productRepo.findById(Integer.parseInt(productId));
 
+        // Only remove product if the product was found, otherwise it will throw a null pointer exception
         if (product.isPresent())
             user.getProducts().remove(product.get());
 
