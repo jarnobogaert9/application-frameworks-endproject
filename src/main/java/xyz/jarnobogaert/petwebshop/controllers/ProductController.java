@@ -2,7 +2,6 @@ package xyz.jarnobogaert.petwebshop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,13 +30,21 @@ public class ProductController {
         // c is the category, so if there is a category provided we filter the products based on that category
         if (c != null) {
             Category category = null;
-            try {
-                category = Category.valueOf(c.toUpperCase());
-                products = productRepo.findByCategory(category);
-            } catch (Exception ex) {
-                System.out.println("Could not parse category");
-                // Empty array because no valid category was passed
-                products = Arrays.asList();
+
+            // If c is "all" just return all products
+            if (c.equals("all")) {
+                products = productRepo.findAll();
+            }
+            // Otherwise filter it based on category
+            else {
+                try {
+                    category = Category.valueOf(c.toUpperCase());
+                    products = productRepo.findByCategory(category);
+                } catch (Exception ex) {
+                    System.out.println("Could not parse category");
+                    // Empty array because no valid category was passed
+                    products = Arrays.asList();
+                }
             }
         }
         // If there is no category specified we return all the products available
