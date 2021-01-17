@@ -60,7 +60,7 @@ public class AuthController {
         }
 
         if (bindingResult.hasErrors()) {
-            System.out.println("ERRORS in form of user creation");
+            System.out.println("Errors in user registration form");
             return "register";
         }
 

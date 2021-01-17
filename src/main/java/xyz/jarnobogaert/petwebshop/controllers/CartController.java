@@ -39,14 +39,14 @@ public class CartController {
             return "cart";
         }
 
-        // If there is a productId, the user wants to add this product to his cart
+        // If there is a productId, the user wants to add this product to his/her cart
         System.out.println("============ Add to cart ============");
         System.out.println(productId);
 
-        // Get the product that we need to add it to the user his/her cart
+        // Get the product that we need, so we can add it to the user's cart
         Optional<Product> product = productRepo.findById(Integer.parseInt(productId));
 
-        // Add product to the list of products, make sure there is a product to avoid exceptions
+        // Add the product to the list of products, make sure there is a product to avoid exceptions
         if (product.isPresent())
             user.getProducts().add(product.get());
 
@@ -62,7 +62,7 @@ public class CartController {
 
         Optional<Product> product = productRepo.findById(Integer.parseInt(productId));
 
-        // Only remove product if the product was found, otherwise it will throw a null pointer exception
+        // Only remove the product if the product was found, otherwise it will throw a null pointer exception
         if (product.isPresent())
             user.getProducts().remove(product.get());
 
