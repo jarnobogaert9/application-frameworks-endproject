@@ -39,6 +39,7 @@ public class OrderController {
             totalPrice += product.getPrice();
         }
 
+        // Create new order
         Order order = new Order();
         order.setOwner(user);
         order.setProducts(products);

@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // Set the custom provider with configured userService & password encoder
         auth.authenticationProvider(daoAuthenticationProvider);
     }
 }

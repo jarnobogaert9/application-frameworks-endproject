@@ -21,6 +21,7 @@ public class AuthenticationProvider {
         // Create instance of provider and add user service +
         // password encoder so spring security knows how to work with the hashes
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        // myUserService tells the provider how to retrieve a user
         provider.setUserDetailsService(myUserService);
         provider.setPasswordEncoder(bCryptPasswordEncoder);
 
